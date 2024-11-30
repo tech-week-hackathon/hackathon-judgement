@@ -1,5 +1,5 @@
 import { CardanoSyncClient } from "@utxorpc/sdk";
-import { Db } from 'mongodb';
+import { Db, ObjectId } from 'mongodb';
 import { connect, getDb } from "./db.js";
 
 const config = {
@@ -8,22 +8,20 @@ const config = {
       "slot": 77294142
 },
 "utxoRpc": {
-  "host": "https://preview.utxorpc-v0.demeter.run",
-  "headers": {"dmtr-api-key":"utxorpc1l2u0r07s2rg3sl63h69"} 
+  "host": "http://142.93.164.76:50051",
+  "headers": {} 
 },
 }
 
 export default async function indexer() {
   await connect("mongodb://localhost:27017");
-  setInterval(() => {
-    console.log("Indexer");
-  }, 1000);
+
   const mongo = getDb("webData");
 
 
   let tip = await mongo.collection("height").findOne({type: "top"});
   if(!tip){
-    tip = config.historyStart;
+    tip = { ...config.historyStart, _id: new ObjectId() };
   }
   const rcpClient = new CardanoSyncClient({ uri : config.utxoRpc.host,  headers : config.utxoRpc.headers} );
 
@@ -31,8 +29,31 @@ export default async function indexer() {
   const stream =  rcpClient.followTip(tipPoint);
 
   for await (const block of stream ) {
-      console.log(1);
+    if(block.action === "apply"){
+      await handleBlock(block);
+    }
+    else if(block.action === "undo"){
+      await handleBlockUndo(block);
+    }
+    else if(block.action === "reset"){
+      await handleBlockReset(block);
+    }
 
    }
 }
 
+
+async function handleBlock(block: any){
+  let blockHash = Buffer.from(block.block.header.hash).toString('hex');
+  console.log(blockHash);
+}
+
+async function handleBlockUndo(block: any){
+ // let blockHash = Buffer.from(block.block.header.hash).toString('hex');
+  console.log("undo", block);
+}
+
+async function handleBlockReset(block: any){
+ // let blockHash = Buffer.from(block.block.header.hash).toString('hex');
+  console.log("reset", block);
+}
