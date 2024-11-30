@@ -18,9 +18,9 @@
             "twitter": "",
             "logoURI": "https://s3.eu-west-1.amazonaws.com/gov-tool-cc-portal-prod/profile-photo-c394a45e-029a-4a3c-8f9b-ce8707abdbcd",
             "hotCredHex": "034f00984fa72e265b8ff8ffce4405da562cd3d6b16a4a38de3372eeea",
-            "coldCredHex": "cc_cold1zw2vphj8u7hr9clhyd9d5h8ewegxk68rhwyv2nw98d96npqxjxaj2",
+            "coldCredHex": "1394c0de47e7ae32e3f7234ada5cf976506b68e3bb88c54dc53b4ba984",
             "hotCredBech": "cc_hot1qd8spxz05uhzvku0lrluu3q9mftze57kk94y5wx7xdewa6s3guxzr",
-            "coldCredBech": "1394c0de47e7ae32e3f7234ada5cf976506b68e3bb88c54dc53b4ba984"
+            "coldCredBech": "cc_cold1zw2vphj8u7hr9clhyd9d5h8ewegxk68rhwyv2nw98d96npqxjxaj2"
         },
         {
             "name": "Cardano Foundation",
@@ -29,7 +29,7 @@
             "twitter": "https://twitter.com/Cardano_CF",
             "logoURI": "https://s3.eu-west-1.amazonaws.com/gov-tool-cc-portal-prod/profile-photo-f7fc210f-fabb-4486-a67b-e17a22b7674b",
             "hotCredHex": "",
-            "coldCredHex": "132f4a6c6f098e20ee4bfd5b39942c164575f8ceb348e754df5d0ec04f",
+            "coldCredHex": "132f4a6c6f098e20ee4bfd5b39942c164575f8ceb348e754df5d0ec04h",
             "hotCredBech": "",
             "coldCredBech": "cc_cold1zvh55mr0px8zpmjtl4dnn9pvzezht7xwkdyww4xlt58vqnc6qdgps"
         },
