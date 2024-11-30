@@ -15,10 +15,10 @@ interface Person {
   hotCredBech: string
   coldCredBech: string
   judgementCount: number
-  judgments: Vote[]
+  judgments: Judgment[]
 }
 
-interface Vote {
+interface Judgment {
   judge: 'up' | 'down'
   reason: string
 }
@@ -49,8 +49,8 @@ export default function People() {
     getData()
   },[])
 
-  const vote = (coldCredHex: string, vote: 'up' | 'down') => {
-    alert('Thanks for your vote ' + vote)
+  const judgment = (coldCredHex: string, judgment: 'up' | 'down') => {
+    alert('Thanks for your judgment ' + judgment)
   }
 
   return (
@@ -64,16 +64,16 @@ export default function People() {
                 <span className="font-semibold">{person.name}</span>
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => vote(person.coldCredHex, 'up')}
+                    onClick={() => judgment(person.coldCredHex, 'up')}
                   >
                     <ThumbsUp className="w-4 h-4 mr-1" />
-                    <span className="sr-only">Up vote</span>
+                    <span className="sr-only">Up judgment</span>
                   </button>
                   <button
-                    onClick={() => vote(person.coldCredHex, 'down')}
+                    onClick={() => judgment(person.coldCredHex, 'down')}
                   >
                     <ThumbsDown className="w-4 h-4 mr-1" />
-                    <span className="sr-only">Down vote</span>
+                    <span className="sr-only">Down judgment</span>
                   </button>
                   <span className="font-bold" aria-live="polite">Votes: {person.judgments}</span>
                 </div>
@@ -81,7 +81,7 @@ export default function People() {
               <div className="mb-2 flex gap-2">
                 <input
                   type="text"
-                  placeholder="Add a reason for your vote"
+                  placeholder="Add a reason for your judgment"
                   value={newReason}
                   onChange={(e) => setNewReason(e.target.value)}
                   className="flex-grow"
