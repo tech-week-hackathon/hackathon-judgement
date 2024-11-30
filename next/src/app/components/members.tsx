@@ -8,6 +8,7 @@ export default function Members() {
 
   // State
   const [members, setMembers] = useState<MemberInterface[]>([])
+  const [member, setMember] = useState<MemberInterface|null>(null)
   const [judgments, setJudgments] = useState<JudgmentInterface[]>([])
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -29,8 +30,8 @@ export default function Members() {
         setLoading(false)
       });
   }
-  const getJudgements = (coldCredHex: string) => {
-    console.log('coldCredHex', coldCredHex)
+  const getJudgements = (member: MemberInterface) => {
+    setMember(member)
     fetch('./config.judgments.json'
       ,{
         headers : {
@@ -65,7 +66,9 @@ export default function Members() {
             ))}
         </div>
       )}
-      {judgments.length ? <Judgements judgements={judgments}/> : null}
+      {member && judgments.length ? (
+        <Judgements member={member} judgements={judgments} close={() => setJudgments([])}/>
+      ) : null}
     </div>
   )
 }
