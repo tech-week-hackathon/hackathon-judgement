@@ -1,102 +1,94 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { ThumbsUp, ThumbsDown } from 'lucide-react'
+import initialPeople from "../../../config.json"
 
 interface Person {
-  id: number
   name: string
-  votes: number
-  reasons: string[]
+  bio: string
+  website: string
+  twitter: string
+  logoURI: string
+  hotCredHex: string
+  coldCredHex : string // use as ID
+  hotCredBech: string
+  coldCredBech: string
+  judgementCount: number
+  judgments: Vote[]
 }
 
-interface PeopleVotingAppProps {
-  initialPeople: Person[]
+interface Vote {
+  judge: 'up' | 'down'
+  reason: string
 }
 
-export default function PeopleVotingApp({ initialPeople }: PeopleVotingAppProps) {
-  const [people, setPeople] = useState<Person[]>(initialPeople)
+export default function People() {
+  const [people, setPeople] = useState<Person[]>(initialPeople?.members || [])
   const [newReason, setNewReason] = useState("")
 
-  useEffect(() => {
-    const storedPeople = localStorage.getItem("votedPeople")
-    if (storedPeople) {
-      setPeople(JSON.parse(storedPeople))
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem("votedPeople", JSON.stringify(people))
-  }, [people])
-
-  const vote = (id: number, increment: number) => {
-    setPeople(
-      people.map((person) =>
-        person.id === id
-          ? { ...person, votes: person.votes + increment }
-          : person
-      )
+  const getData=()=>{
+    fetch('../config.json'
+      ,{
+        headers : {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }
     )
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(json) {
+        console.log(json);
+        setPeople(json)
+      });
   }
 
-  const addReason = (id: number) => {
-    if (newReason.trim()) {
-      setPeople(
-        people.map((person) =>
-          person.id === id
-            ? { ...person, reasons: [...person.reasons, newReason.trim()] }
-            : person
-        )
-      )
-      setNewReason("")
-    }
+  useEffect(()=>{
+    getData()
+  },[])
+
+  const vote = (coldCredHex: string, vote: 'up' | 'down') => {
+    alert('Thanks for your vote ' + vote)
   }
 
   return (
     <div>
       <ul className="space-y-4">
         {people
-          .sort((a, b) => b.votes - a.votes)
+          .sort((a, b) => b.judgments - a.judgments)
           .map((person) => (
-            <li key={person.id} className="border p-4 rounded-lg">
+            <li key={person.coldCredHex} className="border p-4 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-semibold">{person.name}</span>
                 <div className="flex items-center gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => vote(person.id, 1)}
+                  <button
+                    onClick={() => vote(person.coldCredHex, 'up')}
                   >
                     <ThumbsUp className="w-4 h-4 mr-1" />
-                    <span className="sr-only">Upvote</span>
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => vote(person.id, -1)}
+                    <span className="sr-only">Up vote</span>
+                  </button>
+                  <button
+                    onClick={() => vote(person.coldCredHex, 'down')}
                   >
                     <ThumbsDown className="w-4 h-4 mr-1" />
-                    <span className="sr-only">Downvote</span>
-                  </Button>
-                  <span className="font-bold" aria-live="polite">Votes: {person.votes}</span>
+                    <span className="sr-only">Down vote</span>
+                  </button>
+                  <span className="font-bold" aria-live="polite">Votes: {person.judgments}</span>
                 </div>
               </div>
               <div className="mb-2 flex gap-2">
-                <Input
+                <input
                   type="text"
                   placeholder="Add a reason for your vote"
                   value={newReason}
                   onChange={(e) => setNewReason(e.target.value)}
                   className="flex-grow"
                 />
-                <Button size="sm" onClick={() => addReason(person.id)}>
-                  Add Reason
-                </Button>
               </div>
               <ul className="list-disc list-inside">
-                {person.reasons.map((reason, index) => (
+                {person?.judgments?.map((reason, index) => (
                   <li key={index} className="text-sm text-gray-600">
                     {reason}
                   </li>
