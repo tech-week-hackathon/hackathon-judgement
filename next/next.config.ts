@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  basePath: '/hackathon-judgement',
+  assetPrefix: '/hackathon-judgement/',
 };
+
+// // next.config.js
+// module.exports = {
+//   output: 'export',
+//   basePath: '/hackathon-judgement',
+//   assetPrefix: '/hackathon-judgement/',
+// };
 
 export default nextConfig;
