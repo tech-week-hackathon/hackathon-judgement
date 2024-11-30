@@ -1,28 +1,29 @@
 "use client"
 
 import Image from "next/image";
-import People from "./components/people";
-import {useEffect} from "react";
+import Member from "./components/members";
 
 export default function Home() {
-
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <header>
+    <div>
+      <header className={'w-full shadow flex items-center gap-4 p-4'}>
         <Image
-          className="dark:invert"
+          className="dark:invert block"
           src="/svg/logo-turquoise.svg"
           alt="Logo"
-          width={126}
-          height={145}
+          width={42}
+          height={48}
           priority
         />
-        <h1 className={'font-bold m-auto uppercase'}>Tartarus</h1>
+        <h1 className={'font-bold uppercase mr-auto'}>Tartarus</h1>
+        <button className={'text-xs font-bold uppercase p-2 px-3 border rounded bg-black text-white dark:bg-white dark:text-black hover:bg-black/50'}>
+          Connect
+        </button>
       </header>
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <People initialPeople={[]} />
+      <main className="flex flex-col p-4 sm:p-12">
+        <Member />
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center p-8 border-t mt-4">
         <a
           href="https://github.com/tech-week-hackathon/hackathon-judgement"
           target="_blank"

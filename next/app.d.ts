@@ -1,4 +1,4 @@
-interface Person {
+interface MemberInterface {
   name: string
   bio: string
   website: string
@@ -9,10 +9,12 @@ interface Person {
   hotCredBech: string
   coldCredBech: string
   judgementCount: number
-  judgments: Judgment[]
 }
 
-interface Judgment {
-  judge: 'up' | 'down'
+interface JudgmentInterface {
+  judgement: 'up' | 'down'
   reason: string
+  balance: string // balance at time of vote
+  voter: string // voter address
+  member: string // CC member hex address
 }
