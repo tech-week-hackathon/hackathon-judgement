@@ -1,22 +1,22 @@
 {
-    "judgments": [
+    "judgements": [
         {
             "balance": "123456789",
-            "voter": "address",
+            "voter": "address1",
             "member": "136095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf",
             "judgement": "up",
             "reason": "This guy is great!"
         },
         {
             "balance": "123456789",
-            "voter": "address",
+            "voter": "address2",
             "member": "136095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf",
             "judgement": "up",
             "reason": "This guy is great!"
         },
         {
             "balance": "123456789",
-            "voter": "address",
+            "voter": "address3",
             "member": "136095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf",
             "judgement": "down",
             "reason": "Not sure about this guy!"

@@ -1,12 +1,12 @@
 "use client"
 
-import { ThumbsUp, ThumbsDown } from 'lucide-react'
+import {ThumbsUp, ThumbsDown, Eye} from 'lucide-react'
 import {useState} from "react";
 
-export default function Member({member} : {member: MemberInterface}) {
+export default function Member({member, getJudgements} : {member: MemberInterface, getJudgements: (s: string) => void}) {
 
   // State
-  const [reason, setReason] = useState<string|null>('')
+  const [reason, setReason] = useState<string>('')
 
   // Actions
   const judge = (coldCredHex: string, judgment: 'up' | 'down') => {
@@ -20,7 +20,7 @@ export default function Member({member} : {member: MemberInterface}) {
   }
 
   return (
-    <div>
+    <ul>
       <li key={member.coldCredHex} className="border p-4 rounded-lg">
         <div className="flex items-center gap-4 mb-2">
             <div className={'w-12 h-12 p-2 border rounded flex items-center'}>
@@ -35,7 +35,14 @@ export default function Member({member} : {member: MemberInterface}) {
               </a>
             </div>
             <span className="font-semibold">{member.name}</span>
-            <span className="font-bold ml-auto" aria-live="polite">Judgments: {member.judgementCount || 0}</span>
+            <div className="font-bold ml-auto flex gap-2" aria-live="polite">
+              Judgments: {member.judgementCount || 0}
+              <button onClick={() => {
+                getJudgements(member.coldCredHex)
+              }}>
+                <Eye />
+              </button>
+            </div>
         </div>
         <div className="flex items-center gap-2 border pl-2">
           <button
@@ -59,7 +66,7 @@ export default function Member({member} : {member: MemberInterface}) {
           />
         </div>
       </li>
-    </div>
+    </ul>
   )
 }
 
