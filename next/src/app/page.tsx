@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Member from "./components/members";
+import { Wallet } from "./components/wallet";
 
 export default function Home() {
   return (
-    <div>
-      <header className={'w-full shadow flex items-center gap-4 p-4'}>
+    <div className="container mx-auto">
+      <header className="w-full shadow flex items-center gap-4 p-4">
         <Image
           className="dark:invert block"
           src="/svg/logo-turquoise.svg"
@@ -15,12 +16,12 @@ export default function Home() {
           height={48}
           priority
         />
-        <h1 className={'font-bold uppercase mr-auto'}>Tartarus</h1>
-        <button className={'text-xs font-bold uppercase p-2 px-3 border rounded bg-black text-white dark:bg-white dark:text-black hover:bg-black/50'}>
-          Connect
-        </button>
+        <h1 className="font-bold uppercase mr-auto">Tartarus</h1>
+        <div className="ml-auto">
+          <Wallet />
+        </div>
       </header>
-      <main className="flex flex-col p-4 sm:p-12">
+      <main className="flex flex-col p-4 sm:p-12 overflow-visible">
         <Member />
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center p-8 border-t mt-4">
