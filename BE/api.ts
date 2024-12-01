@@ -23,7 +23,7 @@ export default function api() {
       const upCount = await db.collection("judgements").countDocuments({ judgement: "up" , member: req.params.id});
       const downCount = await db.collection("judgements").countDocuments({ judgement: "down" , member: req.params.id});
       const judgements = await db.collection("judgements").find({member: req.params.id}).toArray();
-      res.json({ up: upCount, down: downCount , total: upCount + downCount, judgements: judgements });
+      res.json({ up: upCount, down: downCount , total: upCount - downCount, judgements: judgements });
     } catch (error) {
       res.status(500).json({ error: "An error occurred while counting judgments." });
     }
