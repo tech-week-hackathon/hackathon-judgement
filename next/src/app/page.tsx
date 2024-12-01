@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Member from "./components/members";
 import { Wallet } from "./components/wallet";
+import Members from "./components/members";
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       </header>
       <main className="flex flex-col p-4 sm:p-12 overflow-visible">
-        <Member />
+        <Members />
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center p-8 border-t mt-4">
         <a

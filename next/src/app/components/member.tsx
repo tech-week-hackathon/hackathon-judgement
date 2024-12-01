@@ -2,9 +2,9 @@
 
 import {ThumbsUp, ThumbsDown, Eye} from 'lucide-react'
 import {useState} from "react";
-import Score from "./score";
+import {trimString} from "../utils";
 
-export default function Member({member, getJudgements} : {member: MemberInterface, getJudgements: (m: MemberInterface) => void}) {
+export default function Member({member, getJudgments} : {member: MemberInterface, getJudgments: (m: MemberInterface) => void}) {
 
   // State
   const [reason, setReason] = useState<string>('')
@@ -35,10 +35,10 @@ export default function Member({member, getJudgements} : {member: MemberInterfac
             </a>
           </div>
           <span className="font-semibold">{member.name}</span>
+          <span>{trimString(member.coldCredBech)}</span>
           <div className="font-bold ml-auto flex gap-2" aria-live="polite">
-            <Score member={member} />
             <button onClick={() => {
-              getJudgements(member)
+              getJudgments(member)
             }}>
               <Eye />
             </button>

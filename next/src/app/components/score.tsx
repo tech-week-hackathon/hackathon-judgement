@@ -3,21 +3,21 @@
 import {useMemo} from "react";
 
 export default function Score({
-  member,
+  judgments,
   className
 } : {
-  member: MemberInterface,
+  judgments: JudgmentResponse
   className?: string
 }) {
 
   // State
   const scoreClasses = useMemo(() => {
-    return member.judgementCount > 0 ? 'bg-green-400' :
-      member.judgementCount < 0 ? 'bg-red-400' : ''
-  }, [member])
+    return judgments.total > 0 ? 'bg-green-400' :
+      judgments.total < 0 ? 'bg-red-400' : ''
+  }, [judgments])
 
   return (
-    <span className={`border rounded p-1 px-2 text-xs ${className} ${scoreClasses}`}>Score: {member.judgementCount || 0}</span>
+    <span className={`border rounded p-1 px-2 text-xs ${className} ${scoreClasses}`}>Merit score: {judgments.total || 0}</span>
   )
 }
 

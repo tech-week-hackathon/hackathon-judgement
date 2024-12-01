@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Member from "./member";
-import Judgements from "./judgements";
+import Judgments from "./judgments";
 import Sentiment from "./sentiment";
 
 export default function Members() {
@@ -10,7 +10,7 @@ export default function Members() {
   // State
   const [members, setMembers] = useState<MemberInterface[]>([])
   const [member, setMember] = useState<MemberInterface|null>(null)
-  const [judgments, setJudgments] = useState<JudgmentInterface[]>([])
+  const [judgments, setJudgments] = useState<JudgmentResponse|null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
   // Actions
@@ -31,9 +31,9 @@ export default function Members() {
         setLoading(false)
       });
   }
-  const getJudgements = (member: MemberInterface) => {
+  const getJudgments = (member: MemberInterface) => {
     setMember(member)
-    fetch('./config.judgments.json'
+    fetch(`http://10.0.7.162:3000/judgements/${member.coldCredBech}`
       ,{
         headers : {
           'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export default function Members() {
         return response.json();
       })
       .then((json) => {
-        setJudgments(json?.judgements || [])
+        setJudgments(json || null)
       });
   }
 
@@ -60,18 +60,20 @@ export default function Members() {
         <div className={'w-full h-96 flex items-center justify-center'}>Loading...</div>
       ) : (
         <>
-          <Sentiment members={members} />
+          <Sentiment />
           <ul className="space-y-4">
             {members
-              .sort((a, b) => b.judgementCount - a.judgementCount)
               .map((p) => (
-                <Member key={p.coldCredHex} member={p} getJudgements={getJudgements} />
+                <Member key={p.coldCredHex} member={p} getJudgments={getJudgments} />
               ))}
           </ul>
         </>
       )}
-      {member && judgments.length ? (
-        <Judgements member={member} judgements={judgments} close={() => setJudgments([])}/>
+      {member && judgments ? (
+        <Judgments member={member} judgments={judgments} close={() => {
+          setJudgments(null)
+          setMember(null)
+        }}/>
       ) : null}
     </div>
   )

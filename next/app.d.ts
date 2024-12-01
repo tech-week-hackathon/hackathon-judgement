@@ -8,7 +8,19 @@ interface MemberInterface {
   coldCredHex : string // use as ID
   hotCredBech: string
   coldCredBech: string
-  judgementCount: number
+}
+
+interface JudgmentTotalResponse {
+  down: number
+  up: number
+  total: number
+}
+
+interface JudgmentResponse {
+  judgements: JudgmentInterface[]
+  down: number
+  up: number
+  total: number
 }
 
 interface JudgmentInterface {

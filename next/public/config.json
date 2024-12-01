@@ -10,7 +10,7 @@
             "coldCredHex": "136095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf",
             "hotCredBech": "",
             "coldCredBech": "cc_cold1zdsftejrafh3en9ku337cdp5jqnt8fyxyx4vt4gjv4dtr0c5vz6ed",
-            "judgementCount": 0
+            "total": 0
         },
         {
             "name": "Input | Output",
@@ -22,7 +22,7 @@
             "coldCredHex": "1394c0de47e7ae32e3f7234ada5cf976506b68e3bb88c54dc53b4ba984",
             "hotCredBech": "cc_hot1qd8spxz05uhzvku0lrluu3q9mftze57kk94y5wx7xdewa6s3guxzr",
             "coldCredBech": "cc_cold1zw2vphj8u7hr9clhyd9d5h8ewegxk68rhwyv2nw98d96npqxjxaj2",
-            "judgementCount": 4
+            "total": 4
         },
         {
             "name": "Cardano Foundation",
@@ -34,7 +34,7 @@
             "coldCredHex": "132f4a6c6f098e20ee4bfd5b39942c164575f8ceb348e754df5d0ec04h",
             "hotCredBech": "",
             "coldCredBech": "cc_cold1zvh55mr0px8zpmjtl4dnn9pvzezht7xwkdyww4xlt58vqnc6qdgps",
-            "judgementCount": -4
+            "total": -4
         },
         {
             "name": "Cardano Atlantic Council",
@@ -46,7 +46,7 @@
             "coldCredHex": "135098dfd0deba725fadd692198fc33ee959fbe7e6edf1b5a695e06e61",
             "hotCredBech": "cc_hot1q036f3qavavj5xudslrzuhzaw0m73kurv9ceg4qj6yl5p7qf4a3gz",
             "coldCredBech": "cc_cold1zdgf3h7sm6a8yhad66fpnr7r8m54n7l8umklrddxjhsxucgkudvrr",
-            "judgementCount": 2
+            "total": 2
         },
         {
             "name": "Intersect",
@@ -58,7 +58,7 @@
             "coldCredHex": "135a71f17f4ce4c1c0be053575d717ade6ad8a1d5453d02a65ce40d4b1",
             "hotCredBech": "cc_hot1qvgy70d5ayzl6qyrjm6n5mgrtc5sl9lkzukn0yn88vsnj4sm78an6",
             "coldCredBech": "cc_cold1zdd8rutlfnjvrs97q56ht4ch4hn2mzsa23faq2n9eeqdfvgss2fuc",
-            "judgementCount": 2
+            "total": 2
         },
         {
             "name": "Cardano Eastern Council",
@@ -70,7 +70,7 @@
             "coldCredHex": "132f4a6c6f098e20ee4bfd5b39942c164575f8ceb348e754df5d0ec04f",
             "hotCredBech": "cc_hot1q0nn96kqvmlzwk03pd9ngumz8vwvujax0l7znx6pj9dp5rcn8g5cu",
             "coldCredBech": "cc_cold1zwn2tcqxl48g75gx9hzrzd3rdxe2gv2q408d32307gjk67cp3tktt",
-            "judgementCount": -1
+            "total": -1
         },
         {
             "name": "Cardano Japan",
@@ -82,7 +82,7 @@
             "coldCredHex": "1394f51c795a6c11adb9c1e30f0b6def4230cbd0b8bc800098e2d2307b",
             "hotCredBech": "",
             "coldCredBech": "cc_cold1zw2028retfkprtdec83s7zmdaaprpj7shz7gqqycutfrq7c8rrdeh",
-            "judgementCount": 0
+            "total": 0
         }
     ]
 }
