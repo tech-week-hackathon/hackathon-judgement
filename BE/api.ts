@@ -17,6 +17,11 @@ export default function api() {
     res.json(JSON.stringify(judgements));
   }); 
 
+  app.get("/totals" , async (req , res) => {
+    const upCount = await db.collection("judgements").countDocuments({ judgement: "up" });
+    const downCount = await db.collection("judgements").countDocuments({ judgement: "down" });
+    res.json({ up: upCount, down: downCount , total: upCount - downCount });
+  });
 
   app.get('/judgements/:id', async (req, res) => {
     try {
@@ -29,7 +34,7 @@ export default function api() {
     }
   });
 
-  
+
   app.listen(3000, () => {
     console.log("Server is running on port 3000");
   });
