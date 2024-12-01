@@ -1,7 +1,7 @@
 "use client"
 
 import {ThumbsUp, ThumbsDown, Eye} from 'lucide-react'
-import {useMemo, useState} from "react";
+import {useState} from "react";
 import Sentiment from "./sentiment";
 
 export default function Member({member, getJudgements} : {member: MemberInterface, getJudgements: (m: MemberInterface) => void}) {
