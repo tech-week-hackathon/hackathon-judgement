@@ -1,7 +1,8 @@
 "use client"
 
 import {ThumbsUp, ThumbsDown, Eye} from 'lucide-react'
-import {useState} from "react";
+import {useMemo, useState} from "react";
+import Sentiment from "./sentiment";
 
 export default function Member({member, getJudgements} : {member: MemberInterface, getJudgements: (m: MemberInterface) => void}) {
 
@@ -36,7 +37,7 @@ export default function Member({member, getJudgements} : {member: MemberInterfac
             </div>
             <span className="font-semibold">{member.name}</span>
             <div className="font-bold ml-auto flex gap-2" aria-live="polite">
-              <span className={'border rounded p-1 px-2 text-xs'}>Judgments: {member.judgementCount || 0}</span>
+              <Sentiment member={member} />
               <button onClick={() => {
                 getJudgements(member)
               }}>
