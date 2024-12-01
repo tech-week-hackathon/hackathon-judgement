@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { Wallet } from "./components/wallet";
 import Members from "./components/members";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Home() {
   return (
@@ -40,6 +43,7 @@ export default function Home() {
           Assets Folder →
         </a>
       </footer>
+      <ToastContainer />
     </div>
   );
 }

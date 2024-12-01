@@ -6,6 +6,8 @@ import Score from "./score";
 import { useWallet } from "@meshsdk/react";
 import { BlockfrostProvider, MeshTxBuilder } from "@meshsdk/core";
 import {trimString} from "../utils";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Member({ member, getJudgments }: { member: MemberInterface, getJudgments: (m: MemberInterface) => void }) {
   // State
@@ -25,11 +27,26 @@ export default function Member({ member, getJudgments }: { member: MemberInterfa
   // Actions
   const judge = async (coldCredBech: string, judgment: 'up' | 'down') => {
     if (!reason) {
-      alert('Please add a reason for your judgment');
+      toast.warn('Please add a reason for your judgment', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       if (!connected) {
-        alert('Please connect a wallet!!');
-        console.log("Wallet connected:", name);
+        toast.warn('Please connect a wallet!!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
         try {
           const utxos = await wallet.getUtxos();
@@ -55,7 +72,16 @@ export default function Member({ member, getJudgments }: { member: MemberInterfa
           const txHash = await wallet.submitTx(signedTx);
           console.log("Transaction submitted:", txHash);
 
-          alert('Your sentiment: ' + judgment + '! With your reason: ' + reason + ' within transaction: ' + txHash)
+          // alert('Your sentiment: ' + judgment + '! With your reason: ' + reason + ' within transaction: ' + txHash)
+          toast.success(`Your sentiment: ${judgment}! With your reason: ${reason}. Transaction: ${txHash}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         } catch (error) {
           console.error("Error handling transaction:", error);
         }
