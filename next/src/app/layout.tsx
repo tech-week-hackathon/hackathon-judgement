@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "📜 judge",
-  description: "huh?",
+  title: "📜 Tartarus",
+  description: "Proof of Merit",
 };
 
 export default function RootLayout({
