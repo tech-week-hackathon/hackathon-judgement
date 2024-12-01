@@ -103,7 +103,7 @@ export default function Member({ member, getJudgments }: { member: MemberInterfa
         </button>
         <input
           type="text"
-          placeholder="Add a reason for your judgment"
+          placeholder="Add a reason for your sentiment"
           value={reason}
           onChange={(e) => setReason(e.target.value)}
           className="flex-grow border-l p-1 px-2"

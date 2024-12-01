@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "📜 Tartarus",
+  title: "📜 Proof of Merit",
   description: "Proof of Merit",
 };
 
