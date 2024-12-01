@@ -2,21 +2,21 @@
     "judgements": [
         {
             "balance": "123456789",
-            "voter": "address1",
+            "voter": "stake1uy3pzuayfvdxquq62wgq6psac2g8qgczr9k0jd65v370ywq8grv05",
             "member": "136095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf",
             "judgement": "up",
             "reason": "This guy is great!"
         },
         {
             "balance": "123456789",
-            "voter": "address2",
+            "voter": "stake1u9948h82jxmaenump0mmxshf5m8w3adsrm54aj9hhyzgvycwxn9dq",
             "member": "136095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf",
             "judgement": "up",
             "reason": "This guy is great!"
         },
         {
             "balance": "123456789",
-            "voter": "address3",
+            "voter": "stake1u93wcy5z86u7u79vcmqmuaphhr6wfx96nlmsyznv3nrdcyg9cpqnz",
             "member": "136095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf",
             "judgement": "down",
             "reason": "Not sure about this guy!"

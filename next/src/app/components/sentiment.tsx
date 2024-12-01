@@ -3,21 +3,27 @@
 import {useMemo} from "react";
 
 export default function Sentiment({
-  member,
-  className
+  members,
 } : {
-  member: MemberInterface,
-  className?: string
+  members: MemberInterface[],
 }) {
 
-  // State
+  const sentiment = useMemo(
+    () => members
+      .map(m => m.judgementCount)
+      .reduce((s, m) => s + m, 0),
+    [members]
+  )
+
   const sentimentClasses = useMemo(() => {
-    return member.judgementCount > 0 ? 'bg-green-400' :
-      member.judgementCount < 0 ? 'bg-red-400' : ''
-  }, [member])
+    return sentiment > 0 ? 'bg-green-400' :
+      sentiment < 0 ? 'bg-red-400' : ''
+  }, [sentiment])
 
   return (
-    <span className={`border rounded p-1 px-2 text-xs ${className} ${sentimentClasses}`}>Sentiment: {member.judgementCount || 0}</span>
+    <div className={`shadow-md border rounded p-8 text-center mb-4 ${sentimentClasses}`}>
+      Community CC Proof of Merit: <strong>{sentiment}</strong>
+    </div>
   )
 }
 
