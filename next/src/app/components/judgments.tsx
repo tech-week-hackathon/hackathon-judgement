@@ -38,13 +38,13 @@ export default function Judgments({
             {judgments.judgements.length ? judgments.judgements.map(j => (
               <tr key={JSON.stringify(j)} className={'border-b'}>
                 <td>{trimString(j.voter)}</td>
-                <td className={`${j.judgement === 'up' ? 'text-red-400' : 'text-green-400'}`}>{j.judgement}</td>
+                <td className={`${j.judgement === 'down' ? 'text-red-400' : 'text-green-400'}`}>{j.judgement}</td>
                 <td>{j.reason}</td>
                 <td className={'text-right'}>{j.balance}</td>
               </tr>
             )) : (
               <tr>
-                <td colSpan={3}>No judgments found</td>
+                <td colSpan={3}>No sentiment found</td>
               </tr>
             )}
           </tbody>

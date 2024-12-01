@@ -16,7 +16,7 @@ export default function Home() {
           height={48}
           priority
         />
-        <h1 className="font-bold uppercase mr-auto">Tartarus</h1>
+        <h1 className="font-bold uppercase mr-auto">Proof of Merit</h1>
         <div className="ml-auto">
           <Wallet />
         </div>
