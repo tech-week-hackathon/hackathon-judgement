@@ -64,7 +64,7 @@ export default function Members() {
           <ul className="space-y-4">
             {members
               .map((p) => (
-                <Member key={p.coldCredHex} member={p} getJudgments={getJudgments} />
+                <Member key={p.coldCredBech} member={p} getJudgments={getJudgments} />
               ))}
           </ul>
         </>
