@@ -6,7 +6,7 @@ import { Wallet } from "./components/wallet";
 
 export default function Home() {
   return (
-    <div className="container mx-auto">
+    <div>
       <header className="w-full shadow flex items-center gap-4 p-4">
         <Image
           className="dark:invert block"

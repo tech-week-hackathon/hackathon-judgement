@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "../globals.css"; // Import the CSS file
-import "@meshsdk/react/styles.css"
 
 export const Wallet = () => {
   const [Wallet, setWallet] = useState<any | null>(null);

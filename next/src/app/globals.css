@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
   }
 }
 
@@ -20,16 +20,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body >div:first-child {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .wallet-container {
   position: relative;
-  z-index: 1000; /* Ensure it is on top */
-  background: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px 0; /* Add margin to push other components */
-  width: 100%; /* Ensure it takes up the full width */
-  max-width: 100%; /* Ensure it doesn't exceed the container width */
-  flex-grow: 1; /* Allow it to grow and take up available space */
-  overflow: visible; /* Ensure dropdowns are visible */
+  overflow: visible;
+}
+
+.wallet-container button {
+  color: var(--foreground);
 }

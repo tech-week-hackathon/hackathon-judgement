@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
 import { MeshProviderApp } from "../providers/meshProvider";
+import "./globals.css";
+import "@meshsdk/react/styles.css"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
