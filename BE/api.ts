@@ -12,6 +12,11 @@ app.get('/judgments', async (req, res) => {
   res.json(judgments);
   });
 
+  app.get('/judgment/:id', async (req, res) => {
+    const judgment = "helloWorld from id" + req.params.id;
+    res.json(judgment);
+  });
+
   app.listen(3000, () => {
     console.log("Server is running on port 3000");
   });
