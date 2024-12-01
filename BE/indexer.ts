@@ -69,7 +69,7 @@ async function handleBlock(block: cardano.Block ){
         metadata["txHash"] = txHash;
         const voter = Buffer.from(tx.inputs[0].asOutput.address).toString('hex'); 
         metadata["voter"] = voter;
-        await mongo.collection("judgements").updateOne({voter: voter}, {$set: metadata}, {upsert: true});
+        await mongo.collection("judgements").updateOne({voter: voter, member: metadata["member"]}, {$set: metadata}, {upsert: true});
       }
       });
     }
