@@ -55,7 +55,7 @@ export default function Member({ member, getJudgments }: { member: MemberInterfa
           const txHash = await wallet.submitTx(signedTx);
           console.log("Transaction submitted:", txHash);
 
-          alert('You have passed your judgment: ' + judgment + '! With your reason: ' + reason + 'within transaction: ' + txHash)
+          alert('Your sentiment: ' + judgment + '! With your reason: ' + reason + ' within transaction: ' + txHash)
         } catch (error) {
           console.error("Error handling transaction:", error);
         }
