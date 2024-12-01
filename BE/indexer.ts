@@ -1,5 +1,7 @@
 import { CardanoSyncClient } from "@utxorpc/sdk";
 import { Db, ObjectId } from 'mongodb';
+import { submit, syncConnect, cardano, queryConnect, submitConnect, query } from '@utxorpc/spec';
+
 import { connect, getDb } from "./db.js";
 
 const config = {
@@ -13,11 +15,11 @@ const config = {
 },
 }
 
+let mongo : Db;
+
 export default async function indexer() {
-  await connect("mongodb://localhost:27017");
 
-  const mongo = getDb("webData");
-
+  mongo = getDb("webData");
 
   let tip = await mongo.collection("height").findOne({type: "top"});
   if(!tip){
@@ -30,7 +32,7 @@ export default async function indexer() {
 
   for await (const block of stream ) {
     if(block.action === "apply"){
-      await handleBlock(block);
+      await handleBlock(block.block);
     }
     else if(block.action === "undo"){
       await handleBlockUndo(block);
@@ -43,8 +45,35 @@ export default async function indexer() {
 }
 
 
-async function handleBlock(block: any){
-  let blockHash = Buffer.from(block.block.header.hash).toString('hex');
+async function handleBlock(block: cardano.Block ){
+  
+  let blockHash = Buffer.from(block.header.hash).toString('hex');
+  block.body.tx.forEach(async (tx) => {
+    if(tx.auxiliary?.metadata){
+      
+    tx.auxiliary?.metadata?.forEach(async (data) => {
+      if(data.label === 77777n){
+        console.log(data.value?.toJsonString());
+        const metadataJson = JSON.parse(data.value?.toJsonString());
+        const metadata = { }
+        metadataJson["map"].pairs.forEach((pair: any) => {
+          metadata[pair.key.text] = pair.value.text
+        })
+        
+        metadata["height"] = block.header.height;
+        metadata["slot"] = block.header.slot;
+        metadata["blockHash"] = blockHash;
+        
+        console.log(metadata);
+        const txHash = Buffer.from(tx.hash).toString('hex');
+        metadata["txHash"] = txHash;
+        metadata["voter"] = Buffer.from(tx.inputs[0].asOutput.address).toString('hex');
+        await mongo.collection("judgements").updateOne({txHash: txHash}, {$set: metadata}, {upsert: true});
+      }
+      });
+    }
+    });
+  await mongo.collection("height").updateOne({type: "top"}, {$set: {hash: blockHash, slot: block.header.slot, height: block.header.height, type: "top"}}, {upsert: true});
   console.log(blockHash);
 }
 
@@ -55,5 +84,6 @@ async function handleBlockUndo(block: any){
 
 async function handleBlockReset(block: any){
  // let blockHash = Buffer.from(block.block.header.hash).toString('hex');
-  console.log("reset", block);
+  
+   console.log("reset", block);
 }
