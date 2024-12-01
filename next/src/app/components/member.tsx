@@ -23,7 +23,7 @@ export default function Member({ member, getJudgments }: { member: MemberInterfa
   });
 
   // Actions
-  const judge = async (coldCredHex: string, judgment: 'up' | 'down') => {
+  const judge = async (coldCredBech: string, judgment: 'up' | 'down') => {
     if (!reason) {
       alert('Please add a reason for your judgment');
     } else {
@@ -39,7 +39,7 @@ export default function Member({ member, getJudgments }: { member: MemberInterfa
 
           const tag = "77777";
           const metadata = {
-              "member": `${coldCredHex}`,
+              "member": `${coldCredBech}`,
               "reason": `${reason}`,
               "balance": `${balance}`,
               "judgement": `${judgment}`
@@ -65,7 +65,7 @@ export default function Member({ member, getJudgments }: { member: MemberInterfa
   };
 
   return (
-    <li key={member.coldCredHex} className="border p-4 rounded-lg shadow-md">
+    <li key={member.coldCredBech} className="border p-4 rounded-lg shadow-md">
       <div className="flex items-center gap-4 mb-2">
         <div className={'w-12 h-12 p-2 border rounded flex items-center'}>
           <a href={member.twitter} target="_blank" className={'hover:scale-[1.2] transition'}>
@@ -90,13 +90,13 @@ export default function Member({ member, getJudgments }: { member: MemberInterfa
       </div>
       <div className="flex items-center gap-2 border pl-2">
         <button
-          onClick={() => judge(member.coldCredHex, 'up')}
+          onClick={() => judge(member.coldCredBech, 'up')}
         >
           <ThumbsUp className="w-4 h-4 mr-1" />
           <span className="sr-only">Up judgment</span>
         </button>
         <button
-          onClick={() => judge(member.coldCredHex, 'down')}
+          onClick={() => judge(member.coldCredBech, 'down')}
         >
           <ThumbsDown className="w-4 h-4 mr-1" />
           <span className="sr-only">Down judgment</span>
